@@ -1,0 +1,20 @@
+module hello
+
+effect PrintHello(): Unit
+
+def demo(): Unit / {PrintHello} = {
+  do PrintHello()
+  do PrintHello()
+  do PrintHello()
+}
+
+def demoHandled() = {
+  try demo() with PrintHello {
+    println("Hello world!")
+    resume(())
+  }
+}
+
+def main() = {
+  demoHandled()
+}
